@@ -1,4 +1,4 @@
-# Emojify-Recon
+# Gusti Claudia
 
 **Sistem Rekonstruksi Representasi Visual Berbasis Emoji dari Data Alfanumerik A–Z Menggunakan Pendekatan *Image Reconstruction* Offline.**
 
