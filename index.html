@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Emojify-Recon — Rekonstruksi Ekspresi Alfanumerik</title>
+<meta name="description" content="Sistem rekonstruksi representasi visual berbasis emoji dari data alfanumerik A–Z. Tekan CTRL + huruf, layar REKA akan menirukan ekspresinya. Berjalan 100% offline." />
+<meta name="theme-color" content="#0a0e12" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link rel="stylesheet" href="style.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="crt-noise" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">◍</span>
+    <div class="brand-text">
+      <strong>EMOJIFY&#8209;RECON</strong>
+      <span>rekon.exe — image reconstruction offline v1.0</span>
+    </div>
+  </div>
+  <div class="status" id="statusPill">
+    <span class="dot" id="statusDot"></span>
+    <span id="statusLabel">memuat…</span>
+  </div>
+</header>
+
+<main class="stage">
+
+  <section class="monitor-wrap">
+    <div class="monitor" id="monitor">
+      <div class="monitor-bezel">
+        <div class="screen" id="screen">
+          <div class="scanlines" aria-hidden="true"></div>
+
+          <svg id="faceSvg" viewBox="0 0 200 200" role="img" aria-label="Wajah REKA">
+            <defs>
+              <radialGradient id="screenGlow" cx="50%" cy="42%" r="70%">
+                <stop offset="0%" stop-color="var(--face-glow)" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="var(--face-glow)" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="92" fill="url(#screenGlow)"/>
+            <circle cx="100" cy="100" r="70" class="face-base" fill="none" stroke="var(--face-color)" stroke-width="2" opacity="0.35"/>
+            <g id="faceExtrasBack"></g>
+            <g id="faceEyes"></g>
+            <g id="faceMouth"></g>
+            <g id="faceExtrasFront"></g>
+          </svg>
+
+          <div class="emoji-burst" id="emojiBurst">😐</div>
+
+          <div class="terminal-line" id="terminalLine">
+            <span class="prompt">&gt;</span>
+            <span id="terminalText">tekan CTRL + [A–Z] untuk memulai rekonstruksi…</span>
+            <span class="caret">▌</span>
+          </div>
+        </div>
+      </div>
+      <div class="monitor-stand" aria-hidden="true"></div>
+      <div class="monitor-base" aria-hidden="true"></div>
+    </div>
+    <p class="mascot-caption">REKA <span>— Rekonstruksi Ekspresi Karakter Alfanumerik</span></p>
+  </section>
+
+  <section class="panel">
+    <div class="panel-head">
+      <h1>Emojify‑Recon</h1>
+      <p>Sistem Rekonstruksi Representasi Visual Berbasis Emoji dari Data Alfanumerik A–Z menggunakan pendekatan <em>image reconstruction</em> offline. Setiap huruf memetakan ke satu ekspresi emoji, satu ucapan, dan satu reaksi visual pada layar REKA.</p>
+    </div>
+
+    <div class="how">
+      <div class="how-item">
+        <span class="how-key">CTRL</span><span class="how-plus">+</span><span class="how-key">A…Z</span>
+        <p>Trigger utama di keyboard fisik. Ditahan sebentar untuk memicu rekonstruksi + suara.</p>
+      </div>
+      <div class="how-item">
+        <span class="how-key">Klik huruf</span>
+        <p>Alternatif yang selalu jalan di HP, tablet, atau saat browser mengunci kombinasi CTRL tertentu (mis. CTRL+T, CTRL+W, CTRL+N).</p>
+      </div>
+    </div>
+
+    <div class="keypad" id="keypad" aria-label="Papan huruf A sampai Z"></div>
+
+    <div class="controls">
+      <label class="toggle">
+        <input type="checkbox" id="soundToggle" checked />
+        <span>Suara &amp; ucapan (Web Speech / Web Audio)</span>
+      </label>
+      <span class="offline-chip" id="offlineChip">● online</span>
+    </div>
+
+    <div class="log">
+      <div class="log-head">console.log</div>
+      <ol id="logList" class="log-list"></ol>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Berjalan sepenuhnya di browser — tanpa server, tanpa koneksi setelah dimuat pertama kali (PWA / Service Worker). Karakter “REKA” adalah desain orisinal, bukan properti berlisensi pihak ketiga.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
